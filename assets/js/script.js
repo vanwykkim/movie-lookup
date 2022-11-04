@@ -6,8 +6,7 @@ var movieTitle = "";
 var movieDescription = "";
 var movieRating = "";
 var movieYear = "";
-
-
+var movieGenre = "";
 
 
 //TODO: kim will write this function to initialize form
