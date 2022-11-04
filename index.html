@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MOVIE LOOKUP</title>
-<<<<<<< HEAD
-=======
 
->>>>>>> c3001e8 (ds store)
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
@@ -26,24 +23,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css"
     />
     <link rel="stylesheet" href="../normalize.css" />
-<<<<<<< HEAD
-=======
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma-rtl.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma-rtl.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css">
-    <link rel="stylesheet" href="../normalize.css">
-
->>>>>>> c3001e8 (ds store)
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <header>
-<<<<<<< HEAD
-=======
-
->>>>>>> c3001e8 (ds store)
       <div>
         <img
           src="./assets/pexels-dmitry-demidov-3921045.jpg"
@@ -68,18 +52,48 @@
           />
         </div>
         <div><button class="searchBtn">Search</button></div>
-        <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a >Home</a>
-            <a >About</a>
-            <a >Contact</a>
+        <!-- <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">Dropdown</button> -->
+          <!-- <div id="myDropdown" class="dropdown-content">
+            <a></a>
+            <a></a>
+            <a></a>
+          </div> -->
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <span>Dropdown button</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">
+                  Dropdown item
+                </a>
+                <a class="dropdown-item">
+                  Other dropdown item
+                </a>
+                <a href="#" class="dropdown-item">
+                  Active dropdown item
+                </a>
+                <a href="#" class="dropdown-item">
+                  Other dropdown item
+                </a>
+                <!-- <hr class="">
+                <a href="#" class="dropdown-item">
+                  With a divider
+                </a> -->
+              </div>
+            </div>
           </div>
         </div>
         <div class="poster_box"></div>
       </aside>
       <div>
-      <!-- TODO: -->
+        <!-- TODO: -->
         <div class="information-box">
           <div><h2>Movie Title:</h2></div>
           <div><h3>The Year of the Production:</h3></div>
@@ -90,29 +104,11 @@
       </div>
       <aside>
         <div class="songBtn"><button>Get Songs</button></div>
-<<<<<<< HEAD
-=======
 
-      <div><img src="./assets/pexels-dmitry-demidov-3921045.jpg" alt="Movie Negative" /></div>
-      <div class="title-h1"><h1>MOVIE LOOKUP</h1></div>
-      <div><img src="./assets/pexels-dmitry-demidov-3921045.jpg" alt="Movie Negative" /></div>
-    </header>
-    <section>
-      <aside>
-        <div><input type="text" placeholder="Input movie title here" /></div>
-        <div><button>Submit</button></div>
-        <div class="poster_box"></div>
-      </aside>
-      <div>
-        <div class="information-box"></div>
-      </div>
-      <aside>
-        <div><button>Get Songs</button></div>
-
->>>>>>> c3001e8 (ds store)
         <div class="track-box"></div>
       </aside>
     </section>
+    
 
     <script src="./assets/js/script.js"></script>
   </body>
