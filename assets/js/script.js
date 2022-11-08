@@ -2,11 +2,14 @@ var songBtnEl = $(".songBtn");
 var searchBtnEl = $('.searchBtn');
 
 //variables to hold movie data
-var movieTitle = "";
-var movieDescription = "";
-var movieRating = "";
-var movieYear = "";
-var movieGenre = "";
+var movieTitleEL = $("#title");
+var movieDescriptionEL = $("#Desc");
+var movieRatingEL = $("#Rating");
+var movieYearEL = $("#ProductionYear");
+var movieGenreEL = $("#Genre");
+var movieruntimeEL = $("#Runtime");
+var PosterIMGEL = $("#poster")
+var movieapikey = "9e98b158";
 
 
 //TODO: kim will write this function to initialize form
@@ -16,14 +19,29 @@ function init(){;}
 function fillDropDown(){}
 
 //TODO: kim update move array in local storage
-function updateMovieArray(){}
+function updateMovieArray(){;}
 
 
 //FIXME: faruk to get this with OMDB API
-function getMovieData(){;}
+function MovieData(movieTitle){
+    var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
+    fetch(queryURL)
+    .then(function(response){
+       return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+        movieTitleEL.text("Movie Title: "+data.Title);
+        movieYearEL.text("Year: "+data.Year);
+        movieGenreEL.text("Genre: "+data.Genre);
+        movieRatingEL.text("Rating: "+data.Rated);
+        movieruntimeEL.text("Runtime: "+data.Runtime);
+        movieDescriptionEL.text("Description: "+data.Plot);
+        var PosterURL = data.Poster;
+        PosterIMGEL.attr("src", PosterURL);
+    })
+}
 
-//FIXME: faruk add movie data to form //load poster here?
-function loadMovieData(){;}
 
 //FIXME: faruk to get this Napster or something else
 function getSongData(){;}
@@ -34,13 +52,13 @@ function loadSongData(){};
 
 //TODO: kim will write this function 
 searchBtnEl.on("click", function(){
-    var movieTxtEl = $('.movieTxt');
+    var movieTxtEl = $(".movieTxt");
     //TODO: get movie title
-    //movieTitle = movieTxtEl.val();
-    updateMovieArray();
-    fillDropDown();
-    getMovieData();
-    loadMovieData();
+    movieTitle = movieTxtEl.val().trim();
+    //updateMovieArray();
+    //fillDropDown();
+    MovieData(movieTitle);
+    console.log(movieTitle)
 });
 
 
@@ -51,13 +69,13 @@ songBtnEl.on("click", function(){
 });
 
 //TODO: kim will write this function
-dropDownEl.on("click", function(){
+/*dropDownEl.on("click", function(){
     //TODO: get the movie title that was clicked
     //this.content?
     getMovieData();
     loadMovieData();
+});*/
 
-});
 
 //copied from w3
 
