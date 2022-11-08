@@ -74,7 +74,7 @@ songBtnEl.on("click", function(){
     //this.content?
     getMovieData();
     loadMovieData();
-});
+});*/
 
 
 //copied from w3
