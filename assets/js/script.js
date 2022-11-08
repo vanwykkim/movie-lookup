@@ -12,14 +12,39 @@ var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 
 
-//TODO: kim will write this function to initialize form
-function init(){;}
+//TODO: kim will write this function 
+//function will load the page with previous search history
+function init(){
+    fillDropDown();
+}
 
 //TODO: kim fill in the drop down with updated movie array
 function fillDropDown(){}
 
 //TODO: kim update move array in local storage
-function updateMovieArray(){;}
+function updateMovieArray(movieTitleAPI){
+    var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
+    if(theMovieArray == null || theMovieArray == 'undefined'){
+        //if no items yet can't have lenght?
+        theMovieArray = [movieTitleAPI];
+    }else{ 
+        if(theMovieArray.indexOf(movieTitleAPI)>-1){ 
+        //if the array already includes the Movie move it to front
+            theMovieArray.splice(theMovieArray.indexOf(movieTitleAPI),1);
+            theMovieArray.unshift(movieTitleAPI);
+        }else if(theMovieArray.length < 10){
+            //just need to add
+            theMovieArray.unshift(movieTitleAPI);
+        }else{
+            //remove from end and add to front so load in order on buttons with newest on top
+            theMovieArray.pop();
+            theMovieArray.unshift(movieTitleAPI);
+        }
+    }
+      //set updated array in storage
+      localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
+}
+
 
 
 //FIXME: faruk to get this with OMDB API
@@ -30,6 +55,20 @@ function MovieData(movieTitle){
        return response.json();
     })
     .then(function (data) {
+        if(data.Response=="False"){
+        //make a modal for the error message?
+        //clear the fields
+        console.log("need a modal");
+        movieTitleEL.text("Movie Title: "+ movieTitle+" - Does Not Exist Try Again");
+        movieYearEL.text("Year: ");
+        movieGenreEL.text("Genre: ");
+        movieRatingEL.text("Rating: ");
+        movieruntimeEL.text("Runtime: ");
+        movieDescriptionEL.text("Description: ");
+        var PosterURL = "";
+        PosterIMGEL.attr("src", PosterURL);
+        }
+        else{
         console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
         movieYearEL.text("Year: "+data.Year);
@@ -39,7 +78,9 @@ function MovieData(movieTitle){
         movieDescriptionEL.text("Description: "+data.Plot);
         var PosterURL = data.Poster;
         PosterIMGEL.attr("src", PosterURL);
-    })
+        updateMovieArray(data.Title);
+        }
+    })  
 }
 
 
@@ -49,16 +90,17 @@ function getSongData(){;}
 //FIXME: faruk add song data to form
 function loadSongData(){};
 
+//load the page with previous search history
+init();
 
 //TODO: kim will write this function 
 searchBtnEl.on("click", function(){
     var movieTxtEl = $(".movieTxt");
     //TODO: get movie title
     movieTitle = movieTxtEl.val().trim();
-    //updateMovieArray();
     //fillDropDown();
     MovieData(movieTitle);
-    console.log(movieTitle)
+    movieTxtEl.val("");
 });
 
 
@@ -71,8 +113,8 @@ songBtnEl.on("click", function(){
 //TODO: kim will write this function
 /*dropDownEl.on("click", function(){
     //TODO: get the movie title that was clicked
-    //this.content?
-    getMovieData();
+    //movieTitle = this.content?  get the title
+    getMovieData(movieTitle);
     loadMovieData();
 });*/
 
