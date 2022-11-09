@@ -1,3 +1,4 @@
+//var songBtnEl = $('.');
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
@@ -32,7 +33,9 @@ function fillDropDown(){
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
     if(theMovieArray == null || theMovieArray == 'undefined'){
         for(var i=0; i < theMovieArray.length; i++){
-            //show/fill with title
+            var dropEl = $('#drip'+i);
+            dropEl.val(theMovieArray[i]);
+            dropEl.removeAttribute("hidden");
         }
     }
 }
@@ -143,11 +146,6 @@ searchBtnEl.on("click", function(){
 });
 
 
-//TODO: kim will write this function 
-giffyBtnEL.on("click", function(){
-    getSongData();
-    loadSongData();
-});
 $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
@@ -156,13 +154,4 @@ giffyhBtnEl.on("click", function(){
     //FIXME:giffyfunctions here
 });
 
-//TODO: kim will write this function
-/*dropDownEl.on("click", function(){
-    //TODO: get the movie title that was clicked
-    //movieTitle = this.content?  get the title
-    getMovieData(movieTitle);
-    loadMovieData();
-    getSongData(movieTitle);
-    loadSongData();
-});*/
 
