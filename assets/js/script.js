@@ -144,10 +144,13 @@ searchBtnEl.on("click", function(){
 
 
 //TODO: kim will write this function 
-//songBtnEl.on("click", function(){
-//    getSongData();
-//    loadSongData();
-//});
+giffyBtnEL.on("click", function(){
+    getSongData();
+    loadSongData();
+});
+$( document ).ready(function(){
+    $(".dropdown-trigger").dropdown();
+})
 
 giffyhBtnEl.on("click", function(){
     //FIXME:giffyfunctions here
