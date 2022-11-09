@@ -11,6 +11,9 @@ var movieGenreEL = $("#Genre");
 var movieruntimeEL = $("#Runtime");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
+var Giffy1 = $("#gif1")
+var Giffy2 = $("#gif2")
+var Giffy3 = $("#gif3")
 
 //to fill title in load movie and use in get giffy
 var movieT;
@@ -103,6 +106,29 @@ function MovieData(movieTitle){
 }
 
 
+//FIXME: faruk to get this 
+function GifData(){
+    var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+"&limit=3&lang=en";
+    fetch(GIFQueryURL)
+    .then(function(response2){
+       return response2.json();
+    })
+    .then(function (data2){
+        var gif1url = data2.data[0].images.original.url;
+        Giffy1.attr("href",gif1url)
+        var gif2url = data2.data[1].images.original.url;
+        Giffy2.attr("href",gif2url)
+        var gif3url = data2.data[2].images.original.url;
+        Giffy3.attr("href",gif3url)
+        console.log(gif1url)
+        console.log(gif2url)
+        console.log(gif3url)
+
+    })
+}
+
+
 //load the page with previous search history
 init();
 
@@ -116,6 +142,7 @@ searchBtnEl.on("click", function(){
     movieTxtEl.val("");
     PosterIMGEL.css("display", "block");
 
+    GifData()
 });
 
 
@@ -126,16 +153,5 @@ $( document ).ready(function(){
 giffyhBtnEl.on("click", function(){
     //FIXME:giffyfunctions here
 });
-
-//TODO: kim will write this function
-/*dropDownEl.on("click", function(){
-    //TODO: get the movie title that was clicked
-    //movieTitle = this.content?  get the title
-    getMovieData(movieTitle);
-    loadMovieData();
-    getSongData(movieTitle);
-    loadSongData();
-});*/
-
 
 
