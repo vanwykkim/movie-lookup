@@ -1,4 +1,5 @@
 var songBtnEl = $(".songBtn");
+var giffyBtnEL = $(".giffyBtn");
 var searchBtnEl = $('.searchBtn');
 
 //variables to hold movie data
