@@ -29,7 +29,7 @@ nav  {
   
   background-color: RGB(2, 74, 132);
   animation-name: dropdown-trigger;
-  animation-duration: 12s;
+  animation-duration: 14s;
 }
 
 @keyframes dropdown-trigger {
@@ -38,4 +38,10 @@ nav  {
   to {background-color: RGB(232, 212, 173);}
   to {background-color: RGB(206, 138, 58);}
   to {background-color: RGB(149, 79, 15);}
+  /* i was trying to get it to fade back by reversing the colors but it doesnt seem to work */
+  to {background-color: RGB(246, 231, 211);}
+  to {background-color: RGB(232, 212, 173);}
+  to {background-color: RGB(206, 138, 58);}
+  to {background-color: RGB(149, 79, 15);}
 }
+
