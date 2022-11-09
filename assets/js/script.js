@@ -1,5 +1,4 @@
-var songBtnEl = $(".songBtn");
-var giffyBtnEL = $(".giffyBtn");
+var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
 //variables to hold movie data
@@ -12,11 +11,17 @@ var movieruntimeEL = $("#Runtime");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 
+//to fill title in load movie and use in get giffy
+var movieT;
+//to fill genre in load movie and use in get giffy
+var movieG;
+
 
 //TODO: kim will write this function 
 //function will load the page with previous search history
 function init(){
     fillDropDown();
+    giffyBtnEL.prop("disabled",true);
 }
 
 //TODO: kim fill in the drop down with updated movie array
@@ -79,8 +84,10 @@ function MovieData(movieTitle){
         else{
         console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
+        movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
         movieGenreEL.text("Genre: "+data.Genre);
+        movieG = data.Genre;
         movieRatingEL.text("Rating: "+data.Rated);
         movieruntimeEL.text("Runtime: "+data.Runtime);
         movieDescriptionEL.text("Description: "+data.Plot);
@@ -88,29 +95,28 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
+        giffyBtnEL.prop("disabled",false);
     })  
 }
 
-
-//FIXME: faruk to get this Napster or something else
-function getSongData(movieTitle){;}
-
-//FIXME: faruk add song data to form
-function loadSongData(){;}
 
 //load the page with previous search history
 init();
 
 //TODO: kim will write this function 
 searchBtnEl.on("click", function(){
+    giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
-    //TODO: get movie title
     movieTitle = movieTxtEl.val().trim();
     fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
     getSongData(movieTitle);
     loadSongData();
+});
+
+giffyhBtnEl.on("click", function(){
+    //FIXME:giffyfunctions here
 });
 
 //TODO: kim will write this function
