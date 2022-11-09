@@ -12,12 +12,30 @@ header{
     /* need to change width to bringthe edges in to create a new  block  of  information */
     background-image: url("../hero.jpg");
 }
-
+/* / adapting color  */
 nav  {
     background-color: RGB(2, 74, 132);
 }
 
-footer {
+.page-footer {
     background-color: RGB(2, 74, 132);
 }
 
+.searchBtn {
+    padding: 10px 24px;
+}
+/* im just messing arond to see if i can get a cool smooth  animation  to highlight the checkout todays top searchs */
+.dropdown-trigger {
+  
+  background-color: RGB(2, 74, 132);
+  animation-name: dropdown-trigger;
+  animation-duration: 12s;
+}
+
+@keyframes dropdown-trigger {
+  from {background-color: RGB(248, 253, 247);}
+  to {background-color: RGB(246, 231, 211);}
+  to {background-color: RGB(232, 212, 173);}
+  to {background-color: RGB(206, 138, 58);}
+  to {background-color: RGB(149, 79, 15);}
+}
