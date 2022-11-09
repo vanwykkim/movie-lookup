@@ -1,4 +1,4 @@
-var songBtnEl = $(".songBtn");
+var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
 //variables to hold movie data
@@ -11,15 +11,28 @@ var movieruntimeEL = $("#Runtime");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 
+//to fill title in load movie and use in get giffy
+var movieT;
+//to fill genre in load movie and use in get giffy
+var movieG;
+
 
 //TODO: kim will write this function 
 //function will load the page with previous search history
 function init(){
     fillDropDown();
+    giffyBtnEL.prop("disabled",true);
 }
 
 //TODO: kim fill in the drop down with updated movie array
-function fillDropDown(){}
+function fillDropDown(){
+    var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
+    if(theMovieArray == null || theMovieArray == 'undefined'){
+        for(var i=0; i < theMovieArray.length; i++){
+            //show/fill with title
+        }
+    }
+}
 
 //TODO: kim update move array in local storage
 function updateMovieArray(movieTitleAPI){
@@ -71,8 +84,10 @@ function MovieData(movieTitle){
         else{
         console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
+        movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
         movieGenreEL.text("Genre: "+data.Genre);
+        movieG = data.Genre;
         movieRatingEL.text("Rating: "+data.Rated);
         movieruntimeEL.text("Runtime: "+data.Runtime);
         movieDescriptionEL.text("Description: "+data.Plot);
@@ -80,27 +95,24 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
+        giffyBtnEL.prop("disabled",false);
     })  
 }
 
-
-//FIXME: faruk to get this Napster or something else
-function getSongData(){;}
-
-//FIXME: faruk add song data to form
-function loadSongData(){};
 
 //load the page with previous search history
 init();
 
 //TODO: kim will write this function 
 searchBtnEl.on("click", function(){
+    giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
-    //TODO: get movie title
     movieTitle = movieTxtEl.val().trim();
-    //fillDropDown();
+    fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
+    PosterIMGEL.css("display", "block");
+
 });
 
 
@@ -109,6 +121,13 @@ songBtnEl.on("click", function(){
     getSongData();
     loadSongData();
 });
+$( document ).ready(function(){
+    $(".dropdown-trigger").dropdown();
+})
+
+giffyhBtnEl.on("click", function(){
+    //FIXME:giffyfunctions here
+});
 
 //TODO: kim will write this function
 /*dropDownEl.on("click", function(){
@@ -116,27 +135,9 @@ songBtnEl.on("click", function(){
     //movieTitle = this.content?  get the title
     getMovieData(movieTitle);
     loadMovieData();
+    getSongData(movieTitle);
+    loadSongData();
 });*/
 
 
-//copied from w3
 
-// /* When the user clicks on the button, 
-// toggle between hiding and showing the dropdown content */
-// function myFunction() {
-//     document.getElementById("myDropdown").classList.toggle("show");
-//   }
-  
-//   // Close the dropdown if the user clicks outside of it
-//   window.onclick = function(event) {
-//     if (!event.target.matches('.dropbtn')) {
-//       var dropdowns = document.getElementsByClassName("dropdown-content");
-//       var i;
-//       for (i = 0; i < dropdowns.length; i++) {
-//         var openDropdown = dropdowns[i];
-//         if (openDropdown.classList.contains('show')) {
-//           openDropdown.classList.remove('show');
-//         }
-//       }
-//     }
-//   }
