@@ -1,4 +1,3 @@
-//var songBtnEl = $('.');
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
@@ -31,11 +30,12 @@ function init(){
 //TODO: kim fill in the drop down with updated movie array
 function fillDropDown(){
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
-    if(theMovieArray == null || theMovieArray == 'undefined'){
+    if(theMovieArray != null && theMovieArray != 'undefined'){
         for(var i=0; i < theMovieArray.length; i++){
-            var dropEl = $('#drip'+i);
-            dropEl.val(theMovieArray[i]);
-            dropEl.removeAttribute("hidden");
+            var id= '#drop'+i;
+            var dropEl = $(id);
+            dropEl.children().text(theMovieArray[i]);
+            dropEl.show();
         }
     }
 }
@@ -62,11 +62,10 @@ function updateMovieArray(movieTitleAPI){
     }
       //set updated array in storage
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
+      fillDropDown();
 }
 
-
-
-//FIXME: faruk to get this with OMDB API
+//function to get movie data from OMDB API 
 function MovieData(movieTitle){
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
@@ -137,20 +136,24 @@ searchBtnEl.on("click", function(){
     giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
     movieTitle = movieTxtEl.val().trim();
-    fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
     PosterIMGEL.css("display", "block");
-
     GifData()
 });
 
-
+//initialize the dropdown
 $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
-giffyhBtnEl.on("click", function(){
+// var dropLinkEL = $("#dropdown1");
+// dropLinkEL.on("change", function(){
+//     movieT = this.find(':selected').text();
+//     console.log("hello "+movieT);
+// });
+
+giffyBtnEL.on("click", function(){
     //FIXME:giffyfunctions here
 });
 
