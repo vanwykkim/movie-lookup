@@ -117,7 +117,7 @@ searchBtnEl.on("click", function(){
 
 
 //TODO: kim will write this function 
-songBtnEl.on("click", function(){
+giffyBtnEL.on("click", function(){
     getSongData();
     loadSongData();
 });
