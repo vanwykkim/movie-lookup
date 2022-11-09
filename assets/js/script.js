@@ -19,7 +19,14 @@ function init(){
 }
 
 //TODO: kim fill in the drop down with updated movie array
-function fillDropDown(){}
+function fillDropDown(){
+    var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
+    if(theMovieArray == null || theMovieArray == 'undefined'){
+        for(var i=0; i < theMovieArray.length; i++){
+            //show/fill with title
+        }
+    }
+}
 
 //TODO: kim update move array in local storage
 function updateMovieArray(movieTitleAPI){
@@ -85,10 +92,10 @@ function MovieData(movieTitle){
 
 
 //FIXME: faruk to get this Napster or something else
-function getSongData(){;}
+function getSongData(movieTitle){;}
 
 //FIXME: faruk add song data to form
-function loadSongData(){};
+function loadSongData(){;}
 
 //load the page with previous search history
 init();
@@ -98,15 +105,10 @@ searchBtnEl.on("click", function(){
     var movieTxtEl = $(".movieTxt");
     //TODO: get movie title
     movieTitle = movieTxtEl.val().trim();
-    //fillDropDown();
+    fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
-});
-
-
-//TODO: kim will write this function 
-songBtnEl.on("click", function(){
-    getSongData();
+    getSongData(movieTitle);
     loadSongData();
 });
 
@@ -116,6 +118,8 @@ songBtnEl.on("click", function(){
     //movieTitle = this.content?  get the title
     getMovieData(movieTitle);
     loadMovieData();
+    getSongData(movieTitle);
+    loadSongData();
 });*/
 
 
