@@ -49,17 +49,15 @@
     </ul>
   </div>
 </nav>
-<nav>
-  <div class="nav-wrapper">
-    <form>
-      <div class="input-field">
-        <input id="search" type="search" placeholder="Input movie title here" required>
-        <label class="label-icon" for="search"><i class="material-icons"></i></label>
-        <i class="material-icons">submit</i>
-      </div>
-    </form>
-  </div>
-</nav>
+<div>
+  <input
+    type="text"
+    placeholder="Input movie title here"
+    class="movieTxt"
+  />
+</div>
+<div><button class="searchBtn">Search</button></div>
+
     <header>
       <div class="header-image"></div>
       <div>
@@ -71,26 +69,7 @@
       </div>
     </header>
     <section>
-      <aside>
-        <div>
-          <input
-            type="text"
-            placeholder="Input movie title here"
-            class="movieTxt"
-          />
-        </div>
-        <div><button class="searchBtn">Search</button></div>
-        <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-          <div id="myDropdown" class="dropdown-content">
-            <!-- <a >Home</a>
-            <a >About</a>
-            <a >Contact</a> -->
-          </div>
-        </div>
-      </aside>
-      <div>
-      <!-- TODO: -->
+      
         <div class="information-box">
           <div><p id="title">Movie Title:</p></div>
           <div><p id="ProductionYear">Year:</p></div>
@@ -106,9 +85,9 @@
         </div>
         <div class="giffy-btn"><button>Get Giffs</button></div>
         <div class="giff-box">
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
+          <a id="gif1" href=""></a>
+          <a id="gif2" href=""></a>
+          <a id="gif3" href=""></a>
         </div>
         
       </aside>

@@ -109,6 +109,8 @@ searchBtnEl.on("click", function(){
     fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
+    PosterIMGEL.css("display", "block");
+
 });
 
 
