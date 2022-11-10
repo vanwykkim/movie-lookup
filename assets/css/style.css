@@ -23,13 +23,14 @@ nav  {
 
 .searchBtn {
     padding: 10px 24px;
+    font-size: medium;
 }
 /* im just messing arond to see if i can get a cool smooth  animation  to highlight the checkout todays top searchs */
 .dropdown-trigger {
   
   background-color: RGB(2, 74, 132);
   animation-name: dropdown-trigger;
-  animation-duration: 14s;
+  animation-duration: 8.5s;
 }
 
 @keyframes dropdown-trigger {
@@ -45,3 +46,26 @@ nav  {
   to {background-color: RGB(149, 79, 15);}
 }
 
+.giffybtn {
+    padding: 10px 24px;
+    font-size: medium;
+}
+/* /trying to  center the text but i think theres an issue with the div container from the framework */
+/* .mycenter {
+    display: flex;
+    justify-content: center;
+}
+
+.mycenteragain{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.mycenteragain3 {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+} */
+
+/* maybe  use toast for our giphys! */
