@@ -108,18 +108,18 @@ function MovieData(movieTitle){
 //FIXME: faruk to get this 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q=casblanca,drama,romance,war"+"&limit=3&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
         var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("href",gif1url)
+        Giffy1.attr("src",gif1url)
         var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("href",gif2url)
+        Giffy2.attr("src",gif2url)
         var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("href",gif3url)
+        Giffy3.attr("src",gif3url)
         console.log(gif1url)
         console.log(gif2url)
         console.log(gif3url)
@@ -139,7 +139,6 @@ searchBtnEl.on("click", function(){
     MovieData(movieTitle);
     movieTxtEl.val("");
     PosterIMGEL.css("display", "block");
-    GifData()
 });
 
 //initialize the dropdown
@@ -155,6 +154,7 @@ $( document ).ready(function(){
 
 giffyBtnEL.on("click", function(){
     //FIXME:giffyfunctions here
+    GifData()
 });
 
 
