@@ -1,4 +1,3 @@
-//var songBtnEl = $('.');
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
@@ -31,11 +30,12 @@ function init(){
 //TODO: kim fill in the drop down with updated movie array
 function fillDropDown(){
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
-    if(theMovieArray == null || theMovieArray == 'undefined'){
+    if(theMovieArray != null && theMovieArray != 'undefined'){
         for(var i=0; i < theMovieArray.length; i++){
-            var dropEl = $('#drip'+i);
-            dropEl.val(theMovieArray[i]);
-            dropEl.removeAttribute("hidden");
+            var id= '#drop'+i;
+            var dropEl = $(id);
+            dropEl.children().text(theMovieArray[i]);
+            dropEl.show();
         }
     }
 }
@@ -62,11 +62,10 @@ function updateMovieArray(movieTitleAPI){
     }
       //set updated array in storage
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
+      fillDropDown();
 }
 
-
-
-//FIXME: faruk to get this with OMDB API
+//function to get movie data from OMDB API 
 function MovieData(movieTitle){
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
@@ -109,18 +108,18 @@ function MovieData(movieTitle){
 //FIXME: faruk to get this 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q=casblanca,drama,romance,war"+"&limit=3&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
         var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("href",gif1url)
+        Giffy1.attr("src",gif1url)
         var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("href",gif2url)
+        Giffy2.attr("src",gif2url)
         var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("href",gif3url)
+        Giffy3.attr("src",gif3url)
         console.log(gif1url)
         console.log(gif2url)
         console.log(gif3url)
@@ -137,21 +136,25 @@ searchBtnEl.on("click", function(){
     giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
     movieTitle = movieTxtEl.val().trim();
-    fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
     PosterIMGEL.css("display", "block");
-
-    GifData()
 });
 
-
+//initialize the dropdown
 $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
-giffyhBtnEl.on("click", function(){
+// var dropLinkEL = $("#dropdown1");
+// dropLinkEL.on("change", function(){
+//     movieT = this.find(':selected').text();
+//     console.log("hello "+movieT);
+// });
+
+giffyBtnEL.on("click", function(){
     //FIXME:giffyfunctions here
+    GifData()
 });
 
 
