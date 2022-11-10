@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOVIE LOOKUP</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- <link rel="stylesheet" href="../normalize.css"> -->
+</head>
+
+<body>
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li hidden="hidden" id="drop0"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop1"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop2"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop3"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop4"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop5"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop6"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop7"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop8"><a href="#!"></a></li>
+    <li hidden="hidden" id="drop9"><a href="#!"></a></li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper">
+      <!-- maybe -->
+      <a href="#!" class="brand-logo">Welcome</a>
+      <ul class="right hide-on-med-and-down">
+
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Checkout Today's Top Searches<i
+              class="material-icons right"></i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- <div>
+    <input type="text" placeholder="Input movie title here" class="movieTxt" />
+  </div>
+  <div><button class="searchBtn">Search</button></div> -->
+
+  <header>
+    <div class="header-image"></div>
+    <div>
+ <div>
+  
+    </div>
+    <div class="title-h1">
+      <h1></h1>
+    </div>
+    <div>
+
+    </div>
+  </header>
+  <div>
+    <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
+    <input type="text" placeholder="Input movie title here" class="movieTxt" />
+  </div>
+  <div><button class="searchBtn">Search</button></div>
+
+  <section>
+
+    <div class="information-box">
+      <div>
+        <p id="title">Movie Title:</p>
+      </div>
+      <div>
+        <p id="ProductionYear">Year:</p>
+      </div>
+      <div>
+        <p id="Genre">Genre:</p>
+      </div>
+      <div>
+        <p id="Rating">Rating:</p>
+      </div>
+      <div>
+        <p id="Runtime">Runtime:</p>
+      </div>
+      <div>
+        <p id="Desc">Description:</p>
+      </div>
+    </div>
+    </div>
+    <aside>
+      <div class="poster_box">
+        <img id="poster" src=""></img>
+      </div>
+      <div class="giffy-btn"><button>Get Giphys</button></div>
+      <div class="giff-box">
+        <img id="gif1" href=""></img>
+        <img id="gif2" href=""></img>
+        <img id="gif3" href=""></img>
+      </div>
+
+    </aside>
+  </section>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <!-- materialize has a center-align option but im not able to get it to run just yet -->
+          <h5 class="mycenter white-text"> Fact of the Day!</h5>
+          <p class="mycenteragain grey-text text-lighten-4">There was room for Jack on the door!</p>
+        </div>
+        <!-- /<div class="col l4 offset-l2 s12"> -->
+          <!-- <h5 class="white-text">Links</h5> -->
+          <!-- <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul> -->
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="mycenteragain3 container">
+        © 2022 Copyright Movie Ninjas
+        <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+  <script src="./assets/js/script.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
+</body>
+
+</html>
