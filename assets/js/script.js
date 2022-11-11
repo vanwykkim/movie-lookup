@@ -1,5 +1,13 @@
+//global variables to access the buttons for listeners
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
+var dropElementEl = $(".dropTitle");
+
+// Get the modal
+var modal = document.getElementById("myModal");
+var errorTxt = document.getElementById("errorMsg");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
 //variables to hold movie data
 var movieTitleEL = $("#title");
@@ -8,29 +16,35 @@ var movieRatingEL = $("#Rating");
 var movieYearEL = $("#ProductionYear");
 var movieGenreEL = $("#Genre");
 var movieruntimeEL = $("#Runtime");
+var reviewsEL = $("#Reviews");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 var Giffy1 = $("#gif1")
 var Giffy2 = $("#gif2")
 var Giffy3 = $("#gif3")
 
+//global variables to hold data from movieData for the giffy search
 //to fill title in load movie and use in get giffy
 var movieT;
 //to fill genre in load movie and use in get giffy
 var movieG;
 
 
-//TODO: kim will write this function 
+//function to initialize the page on start up
 //function will load the page with previous search history
 function init(){
     fillDropDown();
-    giffyBtnEL.prop("disabled",true);
+    //hide button not ready to use
+    giffyBtnEL.hide();
 }
 
-//TODO: kim fill in the drop down with updated movie array
+//functio to fill in the drop down with updated movie array
 function fillDropDown(){
+    //get array from storage
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
+    //make sure array initialized already
     if(theMovieArray != null && theMovieArray != 'undefined'){
+        //fill the drop down and increase visible drop down size til 10
         for(var i=0; i < theMovieArray.length; i++){
             var id= '#drop'+i;
             var dropEl = $(id);
@@ -40,7 +54,7 @@ function fillDropDown(){
     }
 }
 
-//TODO: kim update move array in local storage
+//function that updates array and moves into local storage
 function updateMovieArray(movieTitleAPI){
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
     if(theMovieArray == null || theMovieArray == 'undefined'){
@@ -67,6 +81,11 @@ function updateMovieArray(movieTitleAPI){
 
 //function to get movie data from OMDB API 
 function MovieData(movieTitle){
+    //hide button not ready to use
+    giffyBtnEL.hide();
+    Giffy1.hide();
+    Giffy2.hide();
+    Giffy3.hide();
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
     .then(function(response){
@@ -74,56 +93,107 @@ function MovieData(movieTitle){
     })
     .then(function (data) {
         if(data.Response=="False"){
-        //make a modal for the error message?
-        //clear the fields
-        console.log("need a modal");
-        movieTitleEL.text("Movie Title: "+ movieTitle+" - Does Not Exist Try Again");
+        //make modal visible for the error message
+        if(movieTitle== null || movieTitle == ""){
+            errorTxt.innerText = "You need to enter a title to search."
+        }else{
+            var error = movieTitle+" is not a searchable title.";
+            errorTxt.innerText = error;
+    }
+        modal.style.display = "block";
+        //clear the fields for retry
+        movieTitleEL.text("Movie Title:");
         movieYearEL.text("Year: ");
         movieGenreEL.text("Genre: ");
-        movieRatingEL.text("Rating: ");
+        movieRatingEL.text("Rated: ");
         movieruntimeEL.text("Runtime: ");
         movieDescriptionEL.text("Description: ");
+        reviewsEL.text("Ratings: ");
         var PosterURL = "";
         PosterIMGEL.attr("src", PosterURL);
         }
         else{
-        console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
         movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
         movieGenreEL.text("Genre: "+data.Genre);
         movieG = data.Genre;
-        movieRatingEL.text("Rating: "+data.Rated);
+        movieRatingEL.text("Rated: "+data.Rated);
         movieruntimeEL.text("Runtime: "+data.Runtime);
+        var tomato = '';
+        var meta = '';
+        var imdb = '';
+        for(var i = 0; i < data.Ratings.length; i++){
+            if(data.Ratings[i].Source == "Rotten Tomatoes"){
+                tomato = data.Ratings[i].Value;           
+            }else if(data.Ratings[i].Source == "Metacritic"){
+                meta = data.Ratings[i].Value;   
+            }else if(data.Ratings[i].Source == "Internet Movie Database"){
+                imdb = data.Ratings[i].Value;
+                console.log(data.Ratings[i].Value + " IMDB");
+            }
+        }
+        reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
         movieDescriptionEL.text("Description: "+data.Plot);
         var PosterURL = data.Poster;
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
-        giffyBtnEL.prop("disabled",false);
+        //show button now ready to use
+       giffyBtnEL.show();
     })  
 }
 
 
-//FIXME: faruk to get this 
+//gets the gif data 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q=casblanca,drama,romance,war"+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=100&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
-        var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("src",gif1url)
-        var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("src",gif2url)
-        var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("src",gif3url)
-        console.log(gif1url)
-        console.log(gif2url)
-        console.log(gif3url)
-
+        if (data2.meta.status === 200) {
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
+            var gif1url = data2.data[value1].images.original.url;
+            Giffy1.attr("src",gif1url)
+            Giffy1.show();
+            var gif2url = data2.data[value2].images.original.url;
+            Giffy2.show();
+            Giffy2.attr("src",gif2url)
+            var gif3url = data2.data[value3].images.original.url;
+            Giffy3.show();
+            Giffy3.attr("src",gif3url)
+        } else {
+            var GIFQueryURL2 = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieG+"&limit=100&lang=en";
+            fetch(GIFQueryURL2)
+            .then(function(response3){
+               return response3.json();
+            })
+            .then(function (data3){
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
+            var gif1url = data3.data[value1].images.original.url;
+            Giffy1.show();
+            Giffy1.attr("src",gif1url);
+            var gif2url = data3.data[value2].images.original.url;
+            Giffy2.show();
+            Giffy2.attr("src",gif2url);
+            var gif3url = data3.data[value3].images.original.url;
+            Giffy3.show();
+            Giffy3.attr("src",gif3url);
+        })
+        }
     })
 }
 
@@ -131,7 +201,7 @@ function GifData(){
 //load the page with previous search history
 init();
 
-//TODO: kim will write this function 
+//Event listener to run functions on button click 
 searchBtnEl.on("click", function(){
     giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
@@ -146,15 +216,27 @@ $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
-// var dropLinkEL = $("#dropdown1");
-// dropLinkEL.on("change", function(){
-//     movieT = this.find(':selected').text();
-//     console.log("hello "+movieT);
-// });
+//clicks for dropdown elements
+dropElementEl.on("click",function(){
+    giffyBtnEL.prop("disabled",true);
+    movieTitle = this.textContent;
+    MovieData(movieTitle);
+    PosterIMGEL.css("display", "block");
+});
 
+//event listener for the giffy button
 giffyBtnEL.on("click", function(){
-    //FIXME:giffyfunctions here
     GifData()
 });
 
-
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
