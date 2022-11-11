@@ -1,3 +1,4 @@
+
 /* Rodd and Dez are deciding what framework to use */git
 body{
     /* margin: 10px;
@@ -22,9 +23,7 @@ section{
   /* display:flex; */
   margin-left:25px;
 }
-footer{
-  height:
-}
+
 /* nav a{
   display: flex;
   justify-content: center;
@@ -32,6 +31,8 @@ footer{
 
 .page-footer {
     background-color: RGB(2, 74, 132);
+    position:absolute;
+    width:100%;
     
 }
 
