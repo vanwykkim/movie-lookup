@@ -2,6 +2,12 @@
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 
+// Get the modal
+var modal = document.getElementById("myModal");
+var errorTxt = document.getElementById("errorMsg");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 //variables to hold movie data
 var movieTitleEL = $("#title");
 var movieDescriptionEL = $("#Desc");
@@ -80,10 +86,16 @@ function MovieData(movieTitle){
     })
     .then(function (data) {
         if(data.Response=="False"){
-        //make a modal for the error message?
-        //clear the fields
-        console.log("need a modal");
-        movieTitleEL.text("Movie Title: "+ movieTitle+" - Does Not Exist Try Again");
+        //make modal visible for the error message
+        if(movieTitle== null || movieTitle == ""){
+            errorTxt.innerText = "You need to enter a title to search."
+        }else{
+            var error = movieTitle+" is not a searchable title.";
+            errorTxt.innerText = error;
+    }
+        modal.style.display = "block";
+        //clear the fields for retry
+        movieTitleEL.text("Movie Title:");
         movieYearEL.text("Year: ");
         movieGenreEL.text("Genre: ");
         movieRatingEL.text("Rating: ");
@@ -163,4 +175,14 @@ giffyBtnEL.on("click", function(){
     GifData()
 });
 
-
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
