@@ -1,5 +1,5 @@
 
-/* Rodd and Dez are deciding what framework to use */git
+
 body{
     /* margin: 10px;
     margin-left: 25px; */
@@ -23,11 +23,14 @@ section{
   /* display:flex; */
   margin-left:25px;
 }
+#input-bar{
+  background-color: lightblue;
+}
+::placeholder{
+  color:#888;
+}
 
-/* nav a{
-  display: flex;
-  justify-content: center;
-} */
+
 
 .page-footer {
     background-color: RGB(2, 74, 132);
@@ -55,36 +58,16 @@ section{
   to {background-color: RGB(232, 212, 173);}
   to {background-color: RGB(206, 138, 58);}
   to {background-color: RGB(149, 79, 15);}
-  /* i was trying to get it to fade back by reversing the colors but it doesnt seem to work */
-  /* to {background-color: RGB(246, 231, 211);}
-  to {background-color: RGB(232, 212, 173);}
-  to {background-color: RGB(206, 138, 58);}
-  to {background-color: RGB(149, 79, 15);} */
+
 }
 
 .giffy-btn {
     /* padding: 10px 24px; */
     font-size: medium;
 }
-/* /trying to  center the text but i think theres an issue with the div container from the framework */
-/* .mycenter {
-    display: flex;
-    justify-content: center;
-}
 
-.mycenteragain{
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-}
 
-.mycenteragain3 {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-} */
 
-/* maybe  use toast for our giphys! */
 /* The Modal (background) */
 .modal {
     margin-top: 100px;
@@ -132,29 +115,34 @@ section{
     margin-left:25px;
   }
   .information-box{
-    width:20vw;
+    display:flex;
+    align-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    /* width:70vw; */
   }
-  .img-box{
-    width:150px;
-    height:150px;
-    object-fit: cover;
+  .giff-box{
+    display:flex;
+    margin-left: 25px;
     
   }
-  #gif1{
-    display: none;
-    padding-top: 5px;
-    padding-right: 5px;
-  }
-#gif2{
-  display: none;
-  padding:5px;
-}
-#gif3{
-  display:none;
-  padding:5px;
-}
+  
 #welcome{
   margin-left: 25px;
+}
+.giff-frame{
+  
+  display:none;
+  padding:5px;
+  width:250px;
+  height:250px;
+  object-fit: cover;
+
+}
+.search-bar{
+  background-color: RGB(2, 74, 132);
+  display: flex;
+  padding:20px;
 }
  
   
