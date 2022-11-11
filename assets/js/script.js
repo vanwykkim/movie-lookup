@@ -126,18 +126,46 @@ function MovieData(movieTitle){
 //FIXME: faruk to get this 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=100&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
-        var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("src",gif1url)
-        var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("src",gif2url)
-        var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("src",gif3url)
+        if (data2.meta.status === 200) {
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(10);
+            let value3 = generateRandomInteger(15);
+            var gif1url = data2.data[value1].images.original.url;
+            Giffy1.attr("src",gif1url)
+            var gif2url = data2.data[value2].images.original.url;
+            Giffy2.attr("src",gif2url)
+            var gif3url = data2.data[value3].images.original.url;
+            Giffy3.attr("src",gif3url)
+        } else {
+            var GIFQueryURL2 = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieG+"&limit=100&lang=en";
+            fetch(GIFQueryURL2)
+            .then(function(response3){
+               return response3.json();
+            })
+            .then(function (data3){
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(10);
+            let value3 = generateRandomInteger(15);
+            var gif1url = data3.data[value1].images.original.url;
+            Giffy1.attr("src",gif1url)
+            var gif2url = data3.data[value2].images.original.url;
+            Giffy2.attr("src",gif2url)
+            var gif3url = data3.data[value3].images.original.url;
+            Giffy3.attr("src",gif3url)
+        })
+        }
     })
 }
 
