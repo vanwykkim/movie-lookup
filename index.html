@@ -1,65 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MOVIE LOOKUP</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="../normalize.css"> -->
-  <!-- </head> -->
-
-    <!-- Dropdown Structure -->
-<!-- <ul id="dropdown1" class="dropdown-content">
-  <li><a id="drop0" hidden= "hidden" href="#!">one</a></li>
-  <li><a id="drop1" hidden= "hidden" href="#!">two</a></li>
-  <li><a id="drop2" hidden= "hidden" href="#!">three</a></li>
-  <li><a id="drop3" hidden= "hidden" href="#!">four</a></li>
-  <li><a id="drop4" hidden= "hidden" href="#!">five</a></li>
-  <li><a id="drop5" hidden= "hidden" href="#!">six</a></li>
-  <li><a id="drop6" hidden= "hidden" href="#!">seven</a></li>
-  <li><a id="drop7" hidden= "hidden" href="#!">eight</a></li>
-  <li><a id="drop8" hidden= "hidden" href="#!">nine</a></li>
-  <li><a id="drop9" hidden= "hidden" href="#!">ten</a></li>
-</ul> -->
-<!-- <nav>
-  <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Movie Lookup</a>
-    <ul class="right hide-on-med-and-down">
-      <li class="giffy-btn" ><a href="sass.html">Get Giphys</a></li> -->
-      <!-- <a id="gif1" href=""></a>
-          <a id="gif2" href=""></a>
-          <a id="gif3" href=""></a> -->
-      <!-- <div class="giffy-btn"><li><a href="sass.html">Get Giphys</a></li>
-        <div class="giff-box">
-          <a id="gif1" href=""></a>
-          <a id="gif2" href=""></a>
-          <a id="gif3" href=""></a>
-        </div>
-      </div>
-       -->
-      <!-- Dropdown Trigger -->
-      <!-- <li><a  class="dropdown-trigger" href="#!" data-target="dropdown1">Checkout Today's Top Searches<i class="material-icons right"></i></a></li>
-    </ul>
-  </div>
   
-</nav> -->
-<!-- <div>
-  <input
-    type="text"
-    placeholder="Input movie title here"
-    class="movieTxt"
-  />
-</div> -->
-<!-- <div><button class="searchBtn">Search</button></div> -->
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOVIE LOOKUP</title>
+  <title>MOVIE TIME</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="../normalize.css">
@@ -88,7 +35,7 @@
       <ul class="right hide-on-med-and-down">
         
         <li> <a class="giffy-btn"> Get Giphys related to this movie!</a></li>
-        <!-- <div class="giffy-btn"><button>Get Giphys</button></div> -->
+    
         
         <!-- Dropdown Trigger -->
         <li><a id="dropTitle" class="dropdown-trigger" href="#!" data-target="dropdown1"><i
@@ -96,10 +43,7 @@
       </ul>
     
   </nav>
-  <!-- <div>
-    <input type="text" placeholder="Input movie title here" class="movieTxt" />
-  </div>
-  <div><button class="searchBtn">Search</button></div> -->
+  
 
   <header>
     <div class="header-image"></div>
@@ -114,11 +58,14 @@
 
     </div>
   </header>
-  <div>
-    <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
-    <input id="input-box" type="text" placeholder="Input movie title here" class="movieTxt" />
+  <div class="search-bar">
+    <div id="input-bar">
+      <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
+      <input id="input-box" type="text" placeholder="Input movie title here" class="movieTxt" />
+    </div>
+    <div><button class="searchBtn">Search</button></div>
   </div>
-  <div><button class="searchBtn">Search</button></div>
+  
 
  <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -133,6 +80,7 @@
   <section>
 
     <div class="information-box">
+      <div>
       <div>
         <p id="title">Movie Title:</p>
       </div>
@@ -154,27 +102,20 @@
         </div>
         <p id="Desc">Description:</p>
       </div>
+      </div>
       <div class="poster_box">
         <img id="poster" src=""></img>
       </div>
       <!-- <div class="giffy-btn"><button>Get Giphys</button></div> -->
       <div class="giff-box">
-        <img id="gif1" href=""></img>
-        <img id="gif2" href=""></img>
-        <img id="gif3" href=""></img>
+        <img class="giff-frame" id="gif1" href=""></img>
+        <img class="giff-frame" id="gif2" href=""></img>
+        <img class="giff-frame" id="gif3" href=""></img>
       </div>
 
     
   </section>
-  <!-- <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          materialize has a center-align option but im not able to get it to run just yet -->
-          <!-- <h5 class="mycenter white-text"> Fact of the Day!</h5>
-          <p class="mycenteragain grey-text text-lighten-4">There was room for Jack on the door!</p>
-        </div>  -->
-        
+ 
   
         
       </aside>
@@ -183,18 +124,9 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <!-- <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
+            
           </div>
-          <!-- <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul> -->
-        <!-- </div> -->
+    
       </div>
     </div>
     <div class="footer-copyright">
