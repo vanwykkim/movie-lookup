@@ -33,7 +33,8 @@ var movieG;
 //function will load the page with previous search history
 function init(){
     fillDropDown();
-    //TODO: hide giffy button til a search done giffyBtnEL.prop("disabled",true);
+    //hide button not ready to use
+    giffyBtnEL.hide();
 }
 
 //functio to fill in the drop down with updated movie array
@@ -79,7 +80,11 @@ function updateMovieArray(movieTitleAPI){
 
 //function to get movie data from OMDB API 
 function MovieData(movieTitle){
-    //TODO: hide giffy button till update complete
+    //hide button not ready to use
+    giffyBtnEL.hide();
+    Giffy1.hide();
+    Giffy2.hide();
+    Giffy3.hide();
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
     .then(function(response){
@@ -118,7 +123,8 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
-       //TODO: show giffy button giffyBtnEL.prop("disabled",false);
+        //show button now ready to use
+       giffyBtnEL.show();
     })  
 }
 
