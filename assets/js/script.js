@@ -98,56 +98,55 @@ function MovieData(movieTitle){
     })
     .then(function (data) {
         if(data.Response=="False"){
-        //make modal visible for the error message
-        if(movieTitle== null || movieTitle == ""){
-            errorTxt.innerText = "You need to enter a title to search."
-        }else{
-            var error = movieTitle+" is not a searchable title.";
-            errorTxt.innerText = error;
-    }
-        modal.style.display = "block";
-        //clear the fields for retry
-        startImgEl.show();
-        movieTitleEL.text("");
-        movieYearEL.text("");
-        movieGenreEL.text("");
-        movieRatingEL.text("");
-        movieruntimeEL.text("");
-        movieDescriptionEL.text("");
-        reviewsEL.text("");
-        var PosterURL = "";
-        PosterIMGEL.attr("src", PosterURL);
-        }
-        else{
-            startImgEl.css("display", "none");  
-        movieTitleEL.text("Movie Title: "+data.Title);
-        movieT= data.Title;
-        movieYearEL.text("Year: "+data.Year);
-        movieGenreEL.text("Genre: "+data.Genre);
-        movieG = data.Genre;
-        movieRatingEL.text("Rated: "+data.Rated);
-        movieruntimeEL.text("Runtime: "+data.Runtime);
-        var tomato = '';
-        var meta = '';
-        var imdb = '';
-        for(var i = 0; i < data.Ratings.length; i++){
-            if(data.Ratings[i].Source == "Rotten Tomatoes"){
-                tomato = data.Ratings[i].Value;           
-            }else if(data.Ratings[i].Source == "Metacritic"){
-                meta = data.Ratings[i].Value;   
-            }else if(data.Ratings[i].Source == "Internet Movie Database"){
-                imdb = data.Ratings[i].Value;
-                console.log(data.Ratings[i].Value + " IMDB");
+            //make modal visible for the error message
+            if(movieTitle== null || movieTitle == ""){
+                errorTxt.innerText = "You need to enter a title to search."
+            }else{
+                var error = movieTitle+" is not a searchable title.";
+                errorTxt.innerText = error;
             }
+            modal.style.display = "block";
+            //clear the fields for retry
+            startImgEl.show();
+        movieTitleEL.text("");
+            movieYearEL.text("");
+            movieGenreEL.text("");
+            movieRatingEL.text("");
+            movieruntimeEL.text("");
+            movieDescriptionEL.text("");
+            reviewsEL.text("");
+            var PosterURL = "";
+            PosterIMGEL.attr("src", PosterURL);
+        }else{
+                startImgEl.css("display", "none");  
+        movieTitleEL.text("Movie Title: "+data.Title);
+            movieT= data.Title;
+            movieYearEL.text("Year: "+data.Year);
+            movieGenreEL.text("Genre: "+data.Genre);
+            movieG = data.Genre;
+            movieRatingEL.text("Rated: "+data.Rated);
+            movieruntimeEL.text("Runtime: "+data.Runtime);
+            var tomato = '';
+            var meta = '';
+            var imdb = '';
+            for(var i = 0; i < data.Ratings.length; i++){
+                if(data.Ratings[i].Source == "Rotten Tomatoes"){
+                    tomato = data.Ratings[i].Value;           
+                }else if(data.Ratings[i].Source == "Metacritic"){
+                    meta = data.Ratings[i].Value;   
+                }else if(data.Ratings[i].Source == "Internet Movie Database"){
+                    imdb = data.Ratings[i].Value;
+                    console.log(data.Ratings[i].Value + " IMDB");
+                }
+            }
+            reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
+            movieDescriptionEL.text("Description: "+data.Plot);
+            var PosterURL = data.Poster;
+            PosterIMGEL.attr("src", PosterURL);
+            updateMovieArray(data.Title);
+            //show button now ready to use
+            giffyBtnEL.show();
         }
-        reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
-        movieDescriptionEL.text("Description: "+data.Plot);
-        var PosterURL = data.Poster;
-        PosterIMGEL.attr("src", PosterURL);
-        updateMovieArray(data.Title);
-        }
-        //show button now ready to use
-       giffyBtnEL.show();
     })  
 }
 
