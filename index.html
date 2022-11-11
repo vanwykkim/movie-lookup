@@ -62,8 +62,9 @@
   <title>MOVIE LOOKUP</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="../normalize.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  
 </head>
 
 <body>
@@ -81,12 +82,12 @@
     <li hidden="hidden" class="dropTitle" id="drop9"><a href="#!"></a></li>
   </ul>
   <nav>
-    <div class="nav-wrapper">
+    <div id="welcome" class="nav-wrapper">
       <!-- maybe -->
-      <a href=“#!” class=“brand-logo”>Welcome</a>
+      <a class="brand-logo">Welcome</a>
       <ul class="right hide-on-med-and-down">
         
-        <li> <a class=“giffy-btn”> Get Giphys!</a></li>
+        <li> <a class="giffy-btn"> Get Giphys!</a></li>
         <!-- <div class="giffy-btn"><button>Get Giphys</button></div> -->
         
         <!-- Dropdown Trigger -->
@@ -115,7 +116,7 @@
   </header>
   <div>
     <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
-    <input type="text" placeholder="Input movie title here" class="movieTxt" />
+    <input id="input-box" type="text" placeholder="Input movie title here" class="movieTxt" />
   </div>
   <div><button class="searchBtn">Search</button></div>
 
@@ -150,50 +151,53 @@
       <div>
         <p id="Desc">Description:</p>
       </div>
-    </div>
-    </div>
-    <aside>
       <div class="poster_box">
         <img id="poster" src=""></img>
       </div>
+    </div>
+    
+    
+      <!-- <div class="poster_box">
+        <img id="poster" src=""></img>
+      </div> -->
       <!-- <div class="giffy-btn"><button>Get Giphys</button></div> --> 
        <div class="giff-box">
-        <img id="gif1" href=""></img>
-        <img id="gif2" href=""></img>
-        <img id="gif3" href=""></img>
+        <img class="img-box" id="gif1" href=""></img>
+        <img class="img-box" id="gif2" href=""></img>
+        <img class="img-box" id="gif3" href=""></img>
       </div>
 
-    </aside>
+    
   </section>
-  <footer class="page-footer">
+  <!-- <footer class="page-footer">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <!-- materialize has a center-align option but im not able to get it to run just yet -->
-          <h5 class="mycenter white-text"> Fact of the Day!</h5>
+          materialize has a center-align option but im not able to get it to run just yet -->
+          <!-- <h5 class="mycenter white-text"> Fact of the Day!</h5>
           <p class="mycenteragain grey-text text-lighten-4">There was room for Jack on the door!</p>
-        </div>
+        </div>  -->
         
   
         
       </aside>
     </section>
-    <footer class="page-footer">
+    <footer class="page-footer center">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            <!-- <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p> -->
           </div>
-          <div class="col l4 offset-l2 s12">
+          <!-- <div class="col l4 offset-l2 s12">
             <h5 class="white-text">Links</h5>
-            <!-- <ul>
+            <ul>
               <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
               <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
               <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
               <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
             </ul> -->
-        </div>
+        <!-- </div> -->
       </div>
     </div>
     <div class="footer-copyright">
