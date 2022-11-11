@@ -39,7 +39,6 @@ function init(){
     fillDropDown();
     //hide button not ready to use
     giffyBtnEL.hide();
-    dropTitle.innerText = '';
 }
 
 //functio to fill in the drop down with updated movie array
@@ -55,6 +54,8 @@ function fillDropDown(){
             dropEl.children().text(theMovieArray[i]);
             dropEl.show();
         }
+        //set updated array in storage
+        dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
     }
 }
 
@@ -78,8 +79,6 @@ function updateMovieArray(movieTitleAPI){
             theMovieArray.unshift(movieTitleAPI);
         }
     }
-      //set updated array in storage
-      dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
       fillDropDown();
 }

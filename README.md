@@ -1,4 +1,4 @@
-# movie-lookup
+# Movie Time (working title - movie-lookup)
 
 ## Description
 
@@ -14,13 +14,29 @@ This program uses OMDB API to look up movie data and GIFFY API to get related gi
 - created index.html, style.css, script.js
 - Created a read.me
 
-## Screenshot
+## Technologies Used
 
-![Screenshot of website startup](needpi.png)
-![Screenshot of dropdown](needpic)
-![Screenshot of error modal](needpic.png)
-![Screenshot of movie searched](needpic.png)
-![Screenshot of gifs showing](needpic.png)
+- Materialize
+- JQuery
+- HTML
+- CSS
+- W3 Schools
+
+## Screenshots
+### Screenshot of Screen on Start Up with Saved Movie Array
+![Screenshot of website startup](startScreen.png)
+
+### Screenshot of working dropdown
+![Screenshot of dropdown](showDropdown.png)
+
+### Screenshot of error displayed in modal
+![Screenshot of error modal](showModal.png)
+
+### Screenshot after movie searched
+![Screenshot of movie searched](showMovieSearch.png)
+
+### Screenshot showing gifs
+![Screenshot of gifs showing](showGiphy.png)
 
 ## Link to Project
 
