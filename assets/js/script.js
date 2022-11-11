@@ -2,6 +2,7 @@
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 var dropElementEl = $(".dropTitle");
+var titleDrop = $("#dropTitle");
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -36,6 +37,7 @@ function init(){
     fillDropDown();
     //hide button not ready to use
     giffyBtnEL.hide();
+    dropTitle.innerText = '';
 }
 
 //functio to fill in the drop down with updated movie array
@@ -75,6 +77,7 @@ function updateMovieArray(movieTitleAPI){
         }
     }
       //set updated array in storage
+      dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
       fillDropDown();
 }
