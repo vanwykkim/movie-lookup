@@ -1,6 +1,8 @@
+
 /* Rodd and Dez are deciding what framework to use */git
 body{
-    margin: 10px;
+    /* margin: 10px;
+    margin-left: 25px; */
     position: relative;
     height:100vh;
 }
@@ -11,19 +13,33 @@ header{
     height: 20vh;
     /* need to change width to bringthe edges in to create a new  block  of  information */
     background-image: url("../hero.jpg");
+    width:100vw;
 }
 /* / adapting color  */
 nav  {
     background-color: RGB(2, 74, 132);
 }
+section{
+  /* display:flex; */
+  margin-left:25px;
+}
+
+/* nav a{
+  display: flex;
+  justify-content: center;
+} */
 
 .page-footer {
     background-color: RGB(2, 74, 132);
+    position:absolute;
+    width:100%;
+    
 }
 
 .searchBtn {
     padding: 10px 24px;
     font-size: medium;
+    margin-left:25px;
 }
 /* im just messing arond to see if i can get a cool smooth  animation  to highlight the checkout todays top searchs */
 .dropdown-trigger {
@@ -40,14 +56,14 @@ nav  {
   to {background-color: RGB(206, 138, 58);}
   to {background-color: RGB(149, 79, 15);}
   /* i was trying to get it to fade back by reversing the colors but it doesnt seem to work */
-  to {background-color: RGB(246, 231, 211);}
+  /* to {background-color: RGB(246, 231, 211);}
   to {background-color: RGB(232, 212, 173);}
   to {background-color: RGB(206, 138, 58);}
-  to {background-color: RGB(149, 79, 15);}
+  to {background-color: RGB(149, 79, 15);} */
 }
 
 .giffy-btn {
-    padding: 10px 24px;
+    /* padding: 10px 24px; */
     font-size: medium;
 }
 /* /trying to  center the text but i think theres an issue with the div container from the framework */
@@ -111,3 +127,34 @@ nav  {
     text-decoration: none;
     cursor: pointer;
   }
+  #input-box{
+    width:20vw;
+    margin-left:25px;
+  }
+  .information-box{
+    width:20vw;
+  }
+  .img-box{
+    width:150px;
+    height:150px;
+    object-fit: cover;
+    
+  }
+  #gif1{
+    display: none;
+    padding-top: 5px;
+    padding-right: 5px;
+  }
+#gif2{
+  display: none;
+  padding:5px;
+}
+#gif3{
+  display:none;
+  padding:5px;
+}
+#welcome{
+  margin-left: 25px;
+}
+ 
+  

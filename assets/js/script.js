@@ -24,6 +24,7 @@ var Giffy1 = $("#gif1")
 var Giffy2 = $("#gif2")
 var Giffy3 = $("#gif3")
 
+
 //global variables to hold data from movieData for the giffy search
 //to fill title in load movie and use in get giffy
 var movieT;
@@ -198,6 +199,7 @@ function GifData(){
         })
         }
     })
+    
 }
 
 
@@ -229,7 +231,12 @@ dropElementEl.on("click",function(){
 
 //event listener for the giffy button
 giffyBtnEL.on("click", function(){
+    
     GifData()
+    Giffy1.css("display", "inline");
+    Giffy2.css("display", "inline");
+    Giffy3.css("display", "inline");
+
 });
 
 // When the user clicks on <span> (x), close the modal
