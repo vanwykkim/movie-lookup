@@ -142,14 +142,17 @@ function GifData(){
             function generateRandomInteger(max) {
                 return Math.floor(Math.random() * max) + 1;
             }
-            let value1 = generateRandomInteger(20);
-            let value2 = generateRandomInteger(10);
-            let value3 = generateRandomInteger(15);
+            let value1 = generateRandomInteger(100);
+            let value2 = generateRandomInteger(50);
+            let value3 = generateRandomInteger(25);
             var gif1url = data2.data[value1].images.original.url;
             Giffy1.attr("src",gif1url)
+            Giffy1.show();
             var gif2url = data2.data[value2].images.original.url;
+            Giffy2.show();
             Giffy2.attr("src",gif2url)
             var gif3url = data2.data[value3].images.original.url;
+            Giffy3.show();
             Giffy3.attr("src",gif3url)
         } else {
             var GIFQueryURL2 = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieG+"&limit=100&lang=en";
@@ -161,15 +164,18 @@ function GifData(){
             function generateRandomInteger(max) {
                 return Math.floor(Math.random() * max) + 1;
             }
-            let value1 = generateRandomInteger(20);
-            let value2 = generateRandomInteger(10);
-            let value3 = generateRandomInteger(15);
+            let value1 = generateRandomInteger(100);
+            let value2 = generateRandomInteger(50);
+            let value3 = generateRandomInteger(25);
             var gif1url = data3.data[value1].images.original.url;
-            Giffy1.attr("src",gif1url)
+            Giffy1.show();
+            Giffy1.attr("src",gif1url);
             var gif2url = data3.data[value2].images.original.url;
-            Giffy2.attr("src",gif2url)
+            Giffy2.show();
+            Giffy2.attr("src",gif2url);
             var gif3url = data3.data[value3].images.original.url;
-            Giffy3.attr("src",gif3url)
+            Giffy3.show();
+            Giffy3.attr("src",gif3url);
         })
         }
     })
