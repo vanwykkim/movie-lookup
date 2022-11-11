@@ -142,9 +142,9 @@ function GifData(){
             function generateRandomInteger(max) {
                 return Math.floor(Math.random() * max) + 1;
             }
-            let value1 = generateRandomInteger(100);
-            let value2 = generateRandomInteger(50);
-            let value3 = generateRandomInteger(25);
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
             var gif1url = data2.data[value1].images.original.url;
             Giffy1.attr("src",gif1url)
             Giffy1.show();
@@ -164,9 +164,9 @@ function GifData(){
             function generateRandomInteger(max) {
                 return Math.floor(Math.random() * max) + 1;
             }
-            let value1 = generateRandomInteger(100);
-            let value2 = generateRandomInteger(50);
-            let value3 = generateRandomInteger(25);
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
             var gif1url = data3.data[value1].images.original.url;
             Giffy1.show();
             Giffy1.attr("src",gif1url);
