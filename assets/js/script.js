@@ -2,6 +2,8 @@
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 var dropElementEl = $(".dropTitle");
+var titleDrop = $("#dropTitle");
+var startImgEl = $('#start-img');
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -23,6 +25,7 @@ var Giffy1 = $("#gif1")
 var Giffy2 = $("#gif2")
 var Giffy3 = $("#gif3")
 
+
 //global variables to hold data from movieData for the giffy search
 //to fill title in load movie and use in get giffy
 var movieT;
@@ -36,6 +39,7 @@ function init(){
     fillDropDown();
     //hide button not ready to use
     giffyBtnEL.hide();
+    dropTitle.innerText = '';
 }
 
 //functio to fill in the drop down with updated movie array
@@ -75,6 +79,7 @@ function updateMovieArray(movieTitleAPI){
         }
     }
       //set updated array in storage
+      dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
       fillDropDown();
 }
@@ -102,17 +107,19 @@ function MovieData(movieTitle){
     }
         modal.style.display = "block";
         //clear the fields for retry
-        movieTitleEL.text("Movie Title:");
-        movieYearEL.text("Year: ");
-        movieGenreEL.text("Genre: ");
-        movieRatingEL.text("Rated: ");
-        movieruntimeEL.text("Runtime: ");
-        movieDescriptionEL.text("Description: ");
-        reviewsEL.text("Ratings: ");
+        startImgEl.show();
+        movieTitleEL.text("");
+        movieYearEL.text("");
+        movieGenreEL.text("");
+        movieRatingEL.text("");
+        movieruntimeEL.text("");
+        movieDescriptionEL.text("");
+        reviewsEL.text("");
         var PosterURL = "";
         PosterIMGEL.attr("src", PosterURL);
         }
         else{
+            startImgEl.css("display", "none");  
         movieTitleEL.text("Movie Title: "+data.Title);
         movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
@@ -195,6 +202,7 @@ function GifData(){
         })
         }
     })
+    
 }
 
 
@@ -226,7 +234,12 @@ dropElementEl.on("click",function(){
 
 //event listener for the giffy button
 giffyBtnEL.on("click", function(){
+    
     GifData()
+    Giffy1.css("display", "inline");
+    Giffy2.css("display", "inline");
+    Giffy3.css("display", "inline");
+
 });
 
 // When the user clicks on <span> (x), close the modal

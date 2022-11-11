@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOVIE LOOKUP</title>
+  <title>MOVIE TIME</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../normalize.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <!-- <link rel="stylesheet" href="../normalize.css"> -->
+  
 </head>
 
 <body>
@@ -27,21 +29,21 @@
     <li hidden="hidden" class="dropTitle" id="drop9"><a href="#!"></a></li>
   </ul>
   <nav>
-    <div class="nav-wrapper">
+    <div id="welcome" class="nav-wrapper">
       <!-- maybe -->
-      <a href="#!" class="brand-logo">Welcome</a>
+      <a class="brand-logo">Welcome</a>
       <ul class="right hide-on-med-and-down">
-
+        
+        <li> <a class="giffy-btn"> Get Giphys related to this movie!</a></li>
+    
+        
         <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Checkout the Last 10 Searches<i
+        <li><a id="dropTitle" class="dropdown-trigger" href="#!" data-target="dropdown1"><i
               class="material-icons right"></i></a></li>
       </ul>
-    </div>
+    
   </nav>
-  <!-- <div>
-    <input type="text" placeholder="Input movie title here" class="movieTxt" />
-  </div>
-  <div><button class="searchBtn">Search</button></div> -->
+  
 
   <header>
     <div class="header-image"></div>
@@ -56,11 +58,14 @@
 
     </div>
   </header>
-  <div>
-    <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
-    <input type="text" placeholder="Input movie title here" class="movieTxt" />
+  <div class="search-bar">
+    <div id="input-bar">
+      <!-- this is new *** was seeing if thie hierarchy works better DEZ -->
+      <input id="input-box" type="text" placeholder="Input movie title here" class="movieTxt" />
+    </div>
+    <div><button class="searchBtn">Search</button></div>
   </div>
-  <div><button class="searchBtn">Search</button></div>
+  
 
  <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -75,59 +80,54 @@
   <section>
 
     <div class="information-box">
+      <div id="desc-box">
       <div>
-        <p id="title">Movie Title:</p>
+        <p id="title"></p>
       </div>
       <div>
-        <p id="ProductionYear">Year:</p>
+        <p id="ProductionYear"></p>
       </div>
       <div>
-        <p id="Genre">Genre:</p>
+        <p id="Genre"></p>
       </div>
       <div>
-        <p id="Rating">Rated:</p>
+        <p id="Rating"></p>
       </div>
       <div>
-        <p id="Runtime">Runtime:</p>
+        <p id="Runtime"></p>
       </div>
       <div>
         <div>
-          <p id="Reviews">Ratings: </p>
+          <p id="Reviews"> </p>
         </div>
-        <p id="Desc">Description:</p>
+        <p id="Desc"></p>
       </div>
-    </div>
-    </div>
-    <aside>
+      </div>
       <div class="poster_box">
+        <img id="start-img" src="./assets/startPic.jpg" alt="popcorn and a drink"></img>
         <img id="poster" src=""></img>
       </div>
-      <div class="giffy-btn"><button>Get Giphys for this Movie</button></div>
+      <!-- <div class="giffy-btn"><button>Get Giphys</button></div> -->
       <div class="giff-box">
-        <img id="gif1" href=""></img>
-        <img id="gif2" href=""></img>
-        <img id="gif3" href=""></img>
+        <img class="giff-frame" id="gif1" href=""></img>
+        <img class="giff-frame" id="gif2" href=""></img>
+        <img class="giff-frame" id="gif3" href=""></img>
       </div>
 
-    </aside>
+    
   </section>
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <!-- materialize has a center-align option but im not able to get it to run just yet -->
-          <h5 class="mycenter white-text"> Fact of the Day!</h5>
-          <p class="mycenteragain grey-text text-lighten-4">There was room for Jack on the door!</p>
-        </div>
-        <!-- /<div class="col l4 offset-l2 s12"> -->
-          <!-- <h5 class="white-text">Links</h5> -->
-          <!-- <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul> -->
-        </div>
+ 
+  
+        
+      </aside>
+    </section>
+    <footer class="page-footer center">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            
+          </div>
+    
       </div>
     </div>
     <div class="footer-copyright">
