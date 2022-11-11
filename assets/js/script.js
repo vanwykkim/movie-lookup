@@ -16,6 +16,7 @@ var movieRatingEL = $("#Rating");
 var movieYearEL = $("#ProductionYear");
 var movieGenreEL = $("#Genre");
 var movieruntimeEL = $("#Runtime");
+var reviewsEL = $("#Reviews");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 var Giffy1 = $("#gif1")
@@ -104,9 +105,10 @@ function MovieData(movieTitle){
         movieTitleEL.text("Movie Title:");
         movieYearEL.text("Year: ");
         movieGenreEL.text("Genre: ");
-        movieRatingEL.text("Rating: ");
+        movieRatingEL.text("Rated: ");
         movieruntimeEL.text("Runtime: ");
         movieDescriptionEL.text("Description: ");
+        reviewsEL.text("Ratings: ");
         var PosterURL = "";
         PosterIMGEL.attr("src", PosterURL);
         }
@@ -116,8 +118,22 @@ function MovieData(movieTitle){
         movieYearEL.text("Year: "+data.Year);
         movieGenreEL.text("Genre: "+data.Genre);
         movieG = data.Genre;
-        movieRatingEL.text("Rating: "+data.Rated);
+        movieRatingEL.text("Rated: "+data.Rated);
         movieruntimeEL.text("Runtime: "+data.Runtime);
+        var tomato = '';
+        var meta = '';
+        var imdb = '';
+        for(var i = 0; i < data.Ratings.length; i++){
+            if(data.Ratings[i].Source == "Rotten Tomatoes"){
+                tomato = data.Ratings[i].Value;           
+            }else if(data.Ratings[i].Source == "Metacritic"){
+                meta = data.Ratings[i].Value;   
+            }else if(data.Ratings[i].Source == "Internet Movie Database"){
+                imdb = data.Ratings[i].Value;
+                console.log(data.Ratings[i].Value + " IMDB");
+            }
+        }
+        reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
         movieDescriptionEL.text("Description: "+data.Plot);
         var PosterURL = data.Poster;
         PosterIMGEL.attr("src", PosterURL);
@@ -129,7 +145,7 @@ function MovieData(movieTitle){
 }
 
 
-//FIXME: faruk to get this 
+//gets the gif data 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
     var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=3&lang=en";
@@ -177,7 +193,7 @@ dropElementEl.on("click",function(){
     PosterIMGEL.css("display", "block");
 });
 
-
+//event listener for the giffy button
 giffyBtnEL.on("click", function(){
     GifData()
 });
