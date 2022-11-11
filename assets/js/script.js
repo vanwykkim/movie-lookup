@@ -1,6 +1,7 @@
 //global variables to access the buttons for listeners
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
+var dropElementEl = $(".dropTitle");
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -164,12 +165,14 @@ $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
-//TODO: event listener for drop down
-// var dropLinkEL = $("#dropdown1");
-// dropLinkEL.on("change", function(){
-//     movieT = this.find(':selected').text();
-//     console.log("hello "+movieT);
-// });
+//clicks for dropdown elements
+dropElementEl.on("click",function(){
+    giffyBtnEL.prop("disabled",true);
+    movieTitle = this.textContent;
+    MovieData(movieTitle);
+    PosterIMGEL.css("display", "block");
+});
+
 
 giffyBtnEL.on("click", function(){
     GifData()
