@@ -3,6 +3,7 @@ var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 var dropElementEl = $(".dropTitle");
 var titleDrop = $("#dropTitle");
+var startImgEl = $('#start-img');
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -106,17 +107,19 @@ function MovieData(movieTitle){
     }
         modal.style.display = "block";
         //clear the fields for retry
-        movieTitleEL.text("Movie Title:");
-        movieYearEL.text("Year: ");
-        movieGenreEL.text("Genre: ");
-        movieRatingEL.text("Rated: ");
-        movieruntimeEL.text("Runtime: ");
-        movieDescriptionEL.text("Description: ");
-        reviewsEL.text("Ratings: ");
+        startImgEl.show();
+        movieTitleEL.text("");
+        movieYearEL.text("");
+        movieGenreEL.text("");
+        movieRatingEL.text("");
+        movieruntimeEL.text("");
+        movieDescriptionEL.text("");
+        reviewsEL.text("");
         var PosterURL = "";
         PosterIMGEL.attr("src", PosterURL);
         }
         else{
+            startImgEl.css("display", "none");  
         movieTitleEL.text("Movie Title: "+data.Title);
         movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
