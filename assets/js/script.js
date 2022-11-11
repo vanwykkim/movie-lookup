@@ -2,6 +2,7 @@
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 var dropElementEl = $(".dropTitle");
+var titleDrop = $("#dropTitle");
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -16,6 +17,7 @@ var movieRatingEL = $("#Rating");
 var movieYearEL = $("#ProductionYear");
 var movieGenreEL = $("#Genre");
 var movieruntimeEL = $("#Runtime");
+var reviewsEL = $("#Reviews");
 var PosterIMGEL = $("#poster")
 var movieapikey = "9e98b158";
 var Giffy1 = $("#gif1")
@@ -34,7 +36,9 @@ var movieG;
 //function will load the page with previous search history
 function init(){
     fillDropDown();
-    //TODO: hide giffy button til a search done giffyBtnEL.prop("disabled",true);
+    //hide button not ready to use
+    giffyBtnEL.hide();
+    dropTitle.innerText = '';
 }
 
 //functio to fill in the drop down with updated movie array
@@ -74,13 +78,18 @@ function updateMovieArray(movieTitleAPI){
         }
     }
       //set updated array in storage
+      dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
       fillDropDown();
 }
 
 //function to get movie data from OMDB API 
 function MovieData(movieTitle){
-    //TODO: hide giffy button till update complete
+    //hide button not ready to use
+    giffyBtnEL.hide();
+    Giffy1.hide();
+    Giffy2.hide();
+    Giffy3.hide();
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
     .then(function(response){
@@ -100,9 +109,10 @@ function MovieData(movieTitle){
         movieTitleEL.text("Movie Title:");
         movieYearEL.text("Year: ");
         movieGenreEL.text("Genre: ");
-        movieRatingEL.text("Rating: ");
+        movieRatingEL.text("Rated: ");
         movieruntimeEL.text("Runtime: ");
         movieDescriptionEL.text("Description: ");
+        reviewsEL.text("Ratings: ");
         var PosterURL = "";
         PosterIMGEL.attr("src", PosterURL);
         }
@@ -112,33 +122,82 @@ function MovieData(movieTitle){
         movieYearEL.text("Year: "+data.Year);
         movieGenreEL.text("Genre: "+data.Genre);
         movieG = data.Genre;
-        movieRatingEL.text("Rating: "+data.Rated);
+        movieRatingEL.text("Rated: "+data.Rated);
         movieruntimeEL.text("Runtime: "+data.Runtime);
+        var tomato = '';
+        var meta = '';
+        var imdb = '';
+        for(var i = 0; i < data.Ratings.length; i++){
+            if(data.Ratings[i].Source == "Rotten Tomatoes"){
+                tomato = data.Ratings[i].Value;           
+            }else if(data.Ratings[i].Source == "Metacritic"){
+                meta = data.Ratings[i].Value;   
+            }else if(data.Ratings[i].Source == "Internet Movie Database"){
+                imdb = data.Ratings[i].Value;
+                console.log(data.Ratings[i].Value + " IMDB");
+            }
+        }
+        reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
         movieDescriptionEL.text("Description: "+data.Plot);
         var PosterURL = data.Poster;
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
-       //TODO: show giffy button giffyBtnEL.prop("disabled",false);
+        //show button now ready to use
+       giffyBtnEL.show();
     })  
 }
 
 
-//FIXME: faruk to get this 
+//gets the gif data 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=100&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
-        var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("src",gif1url)
-        var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("src",gif2url)
-        var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("src",gif3url)
+        if (data2.meta.status === 200) {
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
+            var gif1url = data2.data[value1].images.original.url;
+            Giffy1.attr("src",gif1url)
+            Giffy1.show();
+            var gif2url = data2.data[value2].images.original.url;
+            Giffy2.show();
+            Giffy2.attr("src",gif2url)
+            var gif3url = data2.data[value3].images.original.url;
+            Giffy3.show();
+            Giffy3.attr("src",gif3url)
+        } else {
+            var GIFQueryURL2 = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieG+"&limit=100&lang=en";
+            fetch(GIFQueryURL2)
+            .then(function(response3){
+               return response3.json();
+            })
+            .then(function (data3){
+            function generateRandomInteger(max) {
+                return Math.floor(Math.random() * max) + 1;
+            }
+            let value1 = generateRandomInteger(20);
+            let value2 = generateRandomInteger(15);
+            let value3 = generateRandomInteger(10);
+            var gif1url = data3.data[value1].images.original.url;
+            Giffy1.show();
+            Giffy1.attr("src",gif1url);
+            var gif2url = data3.data[value2].images.original.url;
+            Giffy2.show();
+            Giffy2.attr("src",gif2url);
+            var gif3url = data3.data[value3].images.original.url;
+            Giffy3.show();
+            Giffy3.attr("src",gif3url);
+        })
+        }
     })
     
 }
@@ -170,7 +229,7 @@ dropElementEl.on("click",function(){
     PosterIMGEL.css("display", "block");
 });
 
-
+//event listener for the giffy button
 giffyBtnEL.on("click", function(){
     
     GifData()
