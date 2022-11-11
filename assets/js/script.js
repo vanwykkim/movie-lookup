@@ -106,7 +106,6 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         }
         else{
-        console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
         movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
@@ -127,7 +126,7 @@ function MovieData(movieTitle){
 //FIXME: faruk to get this 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q=casblanca,drama,romance,war"+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=3&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
@@ -139,10 +138,6 @@ function GifData(){
         Giffy2.attr("src",gif2url)
         var gif3url = data2.data[2].images.original.url;
         Giffy3.attr("src",gif3url)
-        console.log(gif1url)
-        console.log(gif2url)
-        console.log(gif3url)
-
     })
 }
 
