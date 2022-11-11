@@ -17,8 +17,10 @@ This program uses OMDB API to look up movie data and GIFFY API to get related gi
 ## Screenshot
 
 ![Screenshot of website startup](needpi.png)
-![Screenshot of weather at a city with saved cities ](needpic)
-![Screenshot of local storage city list](needpic.png)
+![Screenshot of dropdown](needpic)
+![Screenshot of error modal](needpic.png)
+![Screenshot of movie searched](needpic.png)
+![Screenshot of gifs showing](needpic.png)
 
 ## Link to Project
 

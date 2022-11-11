@@ -2,6 +2,7 @@
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
 var dropElementEl = $(".dropTitle");
+var titleDrop = $("#dropTitle");
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -23,6 +24,7 @@ var Giffy1 = $("#gif1")
 var Giffy2 = $("#gif2")
 var Giffy3 = $("#gif3")
 
+
 //global variables to hold data from movieData for the giffy search
 //to fill title in load movie and use in get giffy
 var movieT;
@@ -36,6 +38,7 @@ function init(){
     fillDropDown();
     //hide button not ready to use
     giffyBtnEL.hide();
+    dropTitle.innerText = '';
 }
 
 //functio to fill in the drop down with updated movie array
@@ -75,6 +78,7 @@ function updateMovieArray(movieTitleAPI){
         }
     }
       //set updated array in storage
+      dropTitle.innerText = 'Checkout the Last '+ theMovieArray.length + " Movies Searched";
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
       fillDropDown();
 }
@@ -195,6 +199,7 @@ function GifData(){
         })
         }
     })
+    
 }
 
 
@@ -226,7 +231,12 @@ dropElementEl.on("click",function(){
 
 //event listener for the giffy button
 giffyBtnEL.on("click", function(){
+    
     GifData()
+    Giffy1.css("display", "inline");
+    Giffy2.css("display", "inline");
+    Giffy3.css("display", "inline");
+
 });
 
 // When the user clicks on <span> (x), close the modal
