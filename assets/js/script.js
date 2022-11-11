@@ -1,6 +1,13 @@
-//var songBtnEl = $('.');
+//global variables to access the buttons for listeners
 var giffyBtnEL = $(".giffy-btn");
 var searchBtnEl = $('.searchBtn');
+var dropElementEl = $(".dropTitle");
+
+// Get the modal
+var modal = document.getElementById("myModal");
+var errorTxt = document.getElementById("errorMsg");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
 //variables to hold movie data
 var movieTitleEL = $("#title");
@@ -15,32 +22,37 @@ var Giffy1 = $("#gif1")
 var Giffy2 = $("#gif2")
 var Giffy3 = $("#gif3")
 
+//global variables to hold data from movieData for the giffy search
 //to fill title in load movie and use in get giffy
 var movieT;
 //to fill genre in load movie and use in get giffy
 var movieG;
 
 
-//TODO: kim will write this function 
+//function to initialize the page on start up
 //function will load the page with previous search history
 function init(){
     fillDropDown();
-    giffyBtnEL.prop("disabled",true);
+    //TODO: hide giffy button til a search done giffyBtnEL.prop("disabled",true);
 }
 
-//TODO: kim fill in the drop down with updated movie array
+//functio to fill in the drop down with updated movie array
 function fillDropDown(){
+    //get array from storage
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
-    if(theMovieArray == null || theMovieArray == 'undefined'){
+    //make sure array initialized already
+    if(theMovieArray != null && theMovieArray != 'undefined'){
+        //fill the drop down and increase visible drop down size til 10
         for(var i=0; i < theMovieArray.length; i++){
-            var dropEl = $('#drip'+i);
-            dropEl.val(theMovieArray[i]);
-            dropEl.removeAttribute("hidden");
+            var id= '#drop'+i;
+            var dropEl = $(id);
+            dropEl.children().text(theMovieArray[i]);
+            dropEl.show();
         }
     }
 }
 
-//TODO: kim update move array in local storage
+//function that updates array and moves into local storage
 function updateMovieArray(movieTitleAPI){
     var theMovieArray = JSON.parse(localStorage.getItem("myMovieArray"));
     if(theMovieArray == null || theMovieArray == 'undefined'){
@@ -62,12 +74,12 @@ function updateMovieArray(movieTitleAPI){
     }
       //set updated array in storage
       localStorage.setItem("myMovieArray", JSON.stringify(theMovieArray));
+      fillDropDown();
 }
 
-
-
-//FIXME: faruk to get this with OMDB API
+//function to get movie data from OMDB API 
 function MovieData(movieTitle){
+    //TODO: hide giffy button till update complete
     var queryURL = "https://www.omdbapi.com/?t="+movieTitle+"&apikey="+movieapikey;
     fetch(queryURL)
     .then(function(response){
@@ -75,10 +87,16 @@ function MovieData(movieTitle){
     })
     .then(function (data) {
         if(data.Response=="False"){
-        //make a modal for the error message?
-        //clear the fields
-        console.log("need a modal");
-        movieTitleEL.text("Movie Title: "+ movieTitle+" - Does Not Exist Try Again");
+        //make modal visible for the error message
+        if(movieTitle== null || movieTitle == ""){
+            errorTxt.innerText = "You need to enter a title to search."
+        }else{
+            var error = movieTitle+" is not a searchable title.";
+            errorTxt.innerText = error;
+    }
+        modal.style.display = "block";
+        //clear the fields for retry
+        movieTitleEL.text("Movie Title:");
         movieYearEL.text("Year: ");
         movieGenreEL.text("Genre: ");
         movieRatingEL.text("Rating: ");
@@ -88,7 +106,6 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         }
         else{
-        console.log(data);
         movieTitleEL.text("Movie Title: "+data.Title);
         movieT= data.Title;
         movieYearEL.text("Year: "+data.Year);
@@ -101,7 +118,7 @@ function MovieData(movieTitle){
         PosterIMGEL.attr("src", PosterURL);
         updateMovieArray(data.Title);
         }
-        giffyBtnEL.prop("disabled",false);
+       //TODO: show giffy button giffyBtnEL.prop("disabled",false);
     })  
 }
 
@@ -109,22 +126,18 @@ function MovieData(movieTitle){
 //FIXME: faruk to get this 
 function GifData(){
     var GIFApiKey = "UVKPRAWezXOtkDQ2himTTRn0V9DTKiPw";
-    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+"&limit=3&lang=en";
+    var GIFQueryURL = "https://api.giphy.com/v1/gifs/search?api_key="+GIFApiKey+"&q="+movieT+movieG+"&limit=3&lang=en";
     fetch(GIFQueryURL)
     .then(function(response2){
        return response2.json();
     })
     .then(function (data2){
         var gif1url = data2.data[0].images.original.url;
-        Giffy1.attr("href",gif1url)
+        Giffy1.attr("src",gif1url)
         var gif2url = data2.data[1].images.original.url;
-        Giffy2.attr("href",gif2url)
+        Giffy2.attr("src",gif2url)
         var gif3url = data2.data[2].images.original.url;
-        Giffy3.attr("href",gif3url)
-        console.log(gif1url)
-        console.log(gif2url)
-        console.log(gif3url)
-
+        Giffy3.attr("src",gif3url)
     })
 }
 
@@ -132,26 +145,42 @@ function GifData(){
 //load the page with previous search history
 init();
 
-//TODO: kim will write this function 
+//Event listener to run functions on button click 
 searchBtnEl.on("click", function(){
     giffyBtnEL.prop("disabled",true);
     var movieTxtEl = $(".movieTxt");
     movieTitle = movieTxtEl.val().trim();
-    fillDropDown();
     MovieData(movieTitle);
     movieTxtEl.val("");
     PosterIMGEL.css("display", "block");
-
-    GifData()
 });
 
-
+//initialize the dropdown
 $( document ).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
-giffyhBtnEl.on("click", function(){
-    //FIXME:giffyfunctions here
+//clicks for dropdown elements
+dropElementEl.on("click",function(){
+    giffyBtnEL.prop("disabled",true);
+    movieTitle = this.textContent;
+    MovieData(movieTitle);
+    PosterIMGEL.css("display", "block");
 });
 
 
+giffyBtnEL.on("click", function(){
+    GifData()
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
