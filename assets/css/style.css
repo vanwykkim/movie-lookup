@@ -53,6 +53,9 @@ section{
   animation-name: dropdown-trigger;
   animation-duration: 8.5s;
 }
+.dropdown-trigger:hover{
+  color:aqua;
+}
 
 @keyframes dropdown-trigger {
   from {background-color: RGB(248, 253, 247);}
@@ -66,6 +69,9 @@ section{
 .giffy-btn {
     /* padding: 10px 24px; */
     font-size: medium;
+}
+.giffy-btn:hover{
+  color:aqua;
 }
 
 
@@ -151,6 +157,8 @@ section{
 }
  #desc-box{
   min-width: 25vw;
+  font-weight: bolder;
+  padding-right: 15px;
  }
  #start-img{
   width: 40vw;

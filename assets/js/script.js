@@ -127,18 +127,14 @@ function MovieData(movieTitle){
             movieruntimeEL.text("Runtime: "+data.Runtime);
             var tomato = '';
             var meta = '';
-            var imdb = '';
             for(var i = 0; i < data.Ratings.length; i++){
                 if(data.Ratings[i].Source == "Rotten Tomatoes"){
                     tomato = data.Ratings[i].Value;           
                 }else if(data.Ratings[i].Source == "Metacritic"){
                     meta = data.Ratings[i].Value;   
-                }else if(data.Ratings[i].Source == "Internet Movie Database"){
-                    imdb = data.Ratings[i].Value;
-                    console.log(data.Ratings[i].Value + " IMDB");
                 }
             }
-            reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta+", IMDB "+imdb);
+            reviewsEL.text("Ratings: Rotten Tomatoes "+tomato +", Metacritic "+meta);
             movieDescriptionEL.text("Description: "+data.Plot);
             var PosterURL = data.Poster;
             PosterIMGEL.attr("src", PosterURL);
